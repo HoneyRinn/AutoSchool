@@ -1,0 +1,67 @@
+﻿<Window x:Class="AutoSchool.CarsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoSchool"
+        mc:Ignorable="d"
+        Title="CarsWindow" Height="536.821" Width="883.152">
+    <Window.Resources>
+        <ControlTemplate TargetType="{x:Type Button}" x:Key="btn">
+            <Border x:Name="buttonBorder"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                Height="{TemplateBinding Height}"
+                Width="{TemplateBinding Width}" >
+                <ContentControl Margin="{TemplateBinding Padding}"
+                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                    Content="{TemplateBinding Content}" />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter TargetName="buttonBorder" Property="Background" Value="#09D0CC" />
+                    <Setter TargetName="buttonBorder" Property="BorderBrush" Value="#09D0CC" />
+                    <!--<Setter TargetName="buttonBorder" Property="Foreground" Value="White"/>-->
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="true">
+                    <Setter TargetName="buttonBorder" Property="Background" Value="#0b4f6c"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FF2978A0" Offset="0.649"/>
+            <GradientStop Color="#FF69A1BD" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Label Foreground="#122c34" Content="Список транспорта"  FontSize="35" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" Height="48" Width="328"/>
+        <DataGrid Background="#2978A0" x:Name="dgInstructors" HorizontalAlignment="Left" Height="434" Margin="10,63,0,0" VerticalAlignment="Top" Width="526" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="id"/>
+                <DataGridTextColumn Binding="{Binding name}" Header="Марка"/>
+                <DataGridTextColumn Binding="{Binding model}" Header="Модель"/>
+                <DataGridTextColumn Binding="{Binding regNum}" Header="Рег. номер"/>
+                <DataGridTextColumn Binding="{Binding milage}" Header="Пробег"/>
+                <DataGridTextColumn Binding="{Binding category}" Header="Категория обучения"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Template="{StaticResource btn}" x:Name="btnDelete" Content="Удалить" FontSize="23" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="552,457,0,0" VerticalAlignment="Top" Width="149" Height="39" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Click="BtnDelete_Click"/>
+        <Button Template="{StaticResource btn}" x:Name="btnExit" Content="Выход" FontSize="23" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="709,457,0,0" VerticalAlignment="Top" Width="155" Height="39" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Click="BtnExit_Click"/>
+        <Button Template="{StaticResource btn}" x:Name="btnRedact" Content="Редактировать" FontSize="23" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="709,413,0,0" VerticalAlignment="Top" Width="155" Height="39" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Click="BtnRedact_Click"/>
+        <Button Template="{StaticResource btn}" x:Name="btnAdd" Content="Добавить" FontSize="23" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="552,413,0,0" VerticalAlignment="Top" Width="149" Height="39" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Click="BtnAdd_Click"/>
+        <TextBox x:Name="tbSearch" FontFamily="Times New Roman" HorizontalAlignment="Left" FontSize="25" Height="32" Margin="552,92,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="219" Visibility="Visible"/>
+        <Button Template="{StaticResource btn}" x:Name="btnSearch" Content="Поиск" FontSize="20" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="775,92,0,0" VerticalAlignment="Top" Width="90" Height="32" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Visibility="Visible" Click="BtnSearch_Click"/>
+        <Label Foreground="#122c34" x:Name="lblSearch" Content="Поиск по марке"  FontSize="25" HorizontalAlignment="Left" Margin="552,53,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" Visibility="Visible" Height="39" Width="223"/>
+        <TextBox x:Name="tbSearch_Copy" FontFamily="Times New Roman" HorizontalAlignment="Left" FontSize="25" Height="32" Margin="552,168,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="220" Visibility="Visible"/>
+        <Button Template="{StaticResource btn}" x:Name="btnSearch_Copy" Content="Поиск" FontSize="20" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="776,168,0,0" VerticalAlignment="Top" Width="90" Height="32" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Visibility="Visible" Click="BtnSearch_Click"/>
+        <Label Foreground="#122c34" x:Name="lblSearch_Copy" Content="Поиск по модели"  FontSize="25" HorizontalAlignment="Left" Margin="553,129,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" Visibility="Visible" Height="39" Width="223"/>
+
+    </Grid>
+</Window>

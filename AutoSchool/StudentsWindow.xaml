@@ -1,0 +1,81 @@
+﻿<Window x:Class="AutoSchool.StudentsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoSchool"
+        mc:Ignorable="d"
+        Title="Курсанты" Height="713.056" Width="1219.79">
+    <Window.Resources>
+        <ControlTemplate TargetType="{x:Type Button}" x:Key="btn">
+            <Border x:Name="buttonBorder"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                Height="{TemplateBinding Height}"
+                Width="{TemplateBinding Width}" >
+                <ContentControl Margin="{TemplateBinding Padding}"
+                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                    Content="{TemplateBinding Content}" />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter TargetName="buttonBorder" Property="Background" Value="#09D0CC" />
+                    <Setter TargetName="buttonBorder" Property="BorderBrush" Value="#09D0CC" />
+                    <!--<Setter TargetName="buttonBorder" Property="Foreground" Value="White"/>-->
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="true">
+                    <Setter TargetName="buttonBorder" Property="Background" Value="#0b4f6c"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="#FF2978A0" Offset="0.649"/>
+            <GradientStop Color="#FF69A1BD" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Viewbox>
+        <Grid Height="677" Width="1206">
+            <DataGrid Background="#2978A0" x:Name="dgStudents" HorizontalAlignment="Left" Height="565" Margin="22,93,0,0" VerticalAlignment="Top" Width="676" AutoGenerateColumns="False" FontSize="14">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding id}" Header="id"/>
+                    <DataGridTextColumn Binding="{Binding fio}" Header="ФИО"/>
+                    <DataGridTextColumn Binding="{Binding passport}" Header="Паспортные данные"/>
+                    <DataGridTextColumn Binding="{Binding сategory}" Header="Категория"/>
+                    <DataGridTextColumn Binding="{Binding carTime}" Header="Часы вождения"/>
+                    <DataGridTextColumn Binding="{Binding theoryExam}" Header="Экзамен теория"/>
+                    <DataGridTextColumn Binding="{Binding gaiExam}" Header="Экзамен ГАИ"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label Foreground="#122c34" Content="Список курсантов"  FontSize="50" HorizontalAlignment="Left" Margin="22,21,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold"/>
+            <Button Template="{StaticResource btn}" x:Name="btnDelete" Content="Удалить" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="775,614,0,0" VerticalAlignment="Top" Width="181" Height="44" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Click="BtnDelete_Click"/>
+            <TextBox x:Name="tbSearch" FontFamily="Times New Roman" HorizontalAlignment="Left" FontSize="25" Height="36" Margin="775,125,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="282" Visibility="Visible"/>
+            <Button Template="{StaticResource btn}" x:Name="btnSearch" Content="Поиск" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="1062,125,0,0" VerticalAlignment="Top" Width="116" Height="36" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Click="BtnSearch_Click" Visibility="Visible"/>
+            <Button Template="{StaticResource btn}" x:Name="btnExit" Content="Выход" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="995,614,0,0" VerticalAlignment="Top" Width="188" Height="44" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Click="BtnExit_Click"/>
+            <Button Template="{StaticResource btn}" x:Name="btnRedact" Content="Редактировать" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="995,565,0,0" VerticalAlignment="Top" Width="188" Height="44" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Click="BtnRedact_Click"/>
+            <Button Template="{StaticResource btn}" x:Name="btnAdd" Content="Добавить" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="775,565,0,0" VerticalAlignment="Top" Width="181" Height="44" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Click="BtnAdd_Click"/>
+            <Label Foreground="#122c34" x:Name="lblSearch" Content="Поиск по фамилии"  FontSize="30" HorizontalAlignment="Left" Margin="775,81,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" Visibility="Visible"/>
+            <TextBox x:Name="tbFio" FontFamily="Times New Roman" HorizontalAlignment="Left" FontSize="25" Height="44" Margin="790,222,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="403" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed"/>
+            <Label Foreground="#122c34" x:Name="lblFio" Content="ФИО"  FontSize="30" HorizontalAlignment="Left" Margin="703,222,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" Visibility="Collapsed"/>
+            <Label Foreground="#122c34" x:Name="lblPassport" Content="Паспортные данные"  FontSize="30" HorizontalAlignment="Left" Margin="703,271,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" Visibility="Collapsed"/>
+            <TextBox x:Name="tbPassport" FontFamily="Times New Roman" HorizontalAlignment="Left" FontSize="25" Height="44" Margin="996,271,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="197" Visibility="Collapsed"/>
+            <Label Foreground="#122c34" x:Name="lblCategory" Content="Категория"  FontSize="30" HorizontalAlignment="Left" Margin="703,320,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" Visibility="Collapsed"/>
+            <ComboBox x:Name="cbCat" HorizontalAlignment="Left" FontSize="30" Margin="860,320,0,0" VerticalAlignment="Top" Width="69" Height="44" FontFamily="Times New Roman" Visibility="Collapsed">
+                <ComboBoxItem Content="A" IsSelected="True" FontSize="30"/>
+                <ComboBoxItem Content="B"  FontSize="30"/>
+                <ComboBoxItem Content="C"  FontSize="30"/>
+                <ComboBoxItem Content="D"  FontSize="30"/>
+                <ComboBoxItem Content="E"  FontSize="30"/>
+            </ComboBox>
+            <Button Template="{StaticResource btn}" x:Name="btnOk" Content="Ок" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="785,375,0,0" VerticalAlignment="Top" Width="181" Height="44" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Visibility="Collapsed" Click="BtnOk_Click"/>
+            <Button Template="{StaticResource btn}" x:Name="BtnOtm" Content="Отмена" FontSize="25" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="979,375,0,0" VerticalAlignment="Top" Width="181" Height="44" RenderTransformOrigin="0.463,0.466" Foreground="#FF4EA5D9" Visibility="Collapsed" Click="BtnOtm_Click"/>
+
+        </Grid>
+    </Viewbox>
+</Window>
